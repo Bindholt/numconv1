@@ -79,7 +79,9 @@ void int_to_dec(int num, char str[]) {
         str[position++] = '0' + remain%10;
         remain /= 10;
     } while (remain > 0);
-    str[position] = '\0';       
+    str[position] = '\0';      
+
+    reverse_string(str); 
 }   
 
 void int_to_bin(int num, char str[]) {
@@ -91,7 +93,9 @@ void int_to_bin(int num, char str[]) {
         str[position++] = '0' + remain%2;
         remain /= 2;
     } while (remain > 0);
-    str[position] = '\0';       
+    str[position] = '\0'; 
+
+    reverse_string(str);      
 }
 
 void int_to_hex(int num, char str[]) {
@@ -110,6 +114,8 @@ void int_to_hex(int num, char str[]) {
     }
 
     str[position] = '\0';
+
+    reverse_string(str);
 }
 
 
@@ -128,9 +134,9 @@ void int_to_oct(int num, char str[]) {
     for (int i = 0; i < position; i++) {
         str[i] = temp[position - 1 - i];
     }  
-
-    
     str[position] = '\0';
+
+    reverse_string(str);
 }
 
 int is_digit(int digit) {
@@ -165,4 +171,19 @@ int is_oct_digit(int digit) {
     if (digit >= 48 && digit <= 55) is_digit = 1;
 
     return is_digit;
+}
+
+char* reverse_string(char str[]) {
+    int len = 0;
+    while (str[len] != '\0') {
+        len++;
+    }
+
+    for (int i = 0; i < len/2; i++) {
+        char temp = str[i];
+        str[i] = str[len - i - 1];
+        str[len - i - 1] = temp;
+    }
+
+    return str;
 }
